@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh" style="height: 100%;">
+<head>
+  <meta charset="UTF-8">
+  <title>Kfoffice</title>
+  <script type="text/javascript" src="http://onlyoffice.kfcoding.com/web-apps/apps/api/documents/api.js"></script>
+</head>
+<body style="height: 100%; margin: 0; overflow: hidden;">
+
+<div id="placeholder" style="height: 100%"></div>
+<script type="text/javascript">
+  let params = new URLSearchParams(window.location.search);
+  let url = params.get('url');
+  let fileType = url.split('.').pop();
+  let name = url.split('/').pop();
+  let documentType = 'presentation';
+  let arr = url.split('/');
+  let filename = arr.pop();
+  let path = arr.pop();
+  let filepath = path + '/' + filename;
+
+  let config = {
+    "document": {
+      "fileType": fileType,
+      "key": new Date().getTime() + '',
+      "title": name,
+      "url": url,
+      "permissions": {
+        "comment": false,
+        "download": true,
+        "edit": true,
+        "modifyFilter": false,
+        "review": false
+      }
+    },
+    "documentType": documentType,
+    "editorConfig": {
+      lang: 'zh_CN',
+      "callbackUrl": "http://kfoffice.kfcoding.com/track?filename=" + filepath
+    }
+  };
+  window.docEditor = new DocsAPI.DocEditor("placeholder", config);
+
+</script>
+</body>
+</html>
