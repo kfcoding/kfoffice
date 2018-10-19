@@ -14,6 +14,11 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get("/health", function (req, res) {
+  console.log("UP");
+  res.write(JSON.stringify({"status": "UP"}));
+});
+
 app.get('/:path/:filename', function (req, res) {
   console.log('download');
   let filepath = '/files/' + req.params.path + '/' + req.params.filename;
