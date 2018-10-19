@@ -18,6 +18,7 @@
   let filename = arr.pop();
   let path = arr.pop();
   let filepath = path + '/' + filename;
+  let mode = params.get('mode') == 'edit' ? 'edit' : 'view';
 
   let config = {
     "document": {
@@ -36,6 +37,7 @@
     "documentType": documentType,
     "editorConfig": {
       lang: 'zh_CN',
+      mode: mode,
       "callbackUrl": "http://kfoffice.kfcoding.com/track?filename=" + filepath
     }
   };
