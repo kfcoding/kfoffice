@@ -16,11 +16,11 @@ app.get('/', function (req, res) {
 
 app.get('/:path/:filename', function (req, res) {
   console.log('download');
-  let filepath = './files/' + req.params.path + '/' + req.params.filename;
+  let filepath = '/files/' + req.params.path + '/' + req.params.filename;
   let filename = req.params.filename;
 
-  if (!fs.existsSync('./files/' + req.params.path)) {
-    fs.mkdirSync('./files/' + req.params.path);
+  if (!fs.existsSync('/files/' + req.params.path)) {
+    fs.mkdirSync('/files/' + req.params.path);
   }
 
   if (!fs.existsSync(filepath)) {
@@ -62,9 +62,9 @@ app.post('/track', function (req, res) {
   }
 
   if (req.body.hasOwnProperty("status")) {
-    updateFile(res, req.body, './files/');
+    updateFile(res, req.body, '/files/');
   } else {
-    readbody(req, res, './files/')
+    readbody(req, res, '/files/')
   }
 });
 
