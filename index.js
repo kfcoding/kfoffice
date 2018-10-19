@@ -17,6 +17,7 @@ app.get('/', function (req, res) {
 app.get("/health", function (req, res) {
   console.log("UP");
   res.write(JSON.stringify({"status": "UP"}));
+  res.end();
 });
 
 app.get('/:path/:filename', function (req, res) {
